@@ -1,0 +1,27 @@
+* {
+  font-size: 1.7rem;
+}
+
+.bem-vindo {
+  text-align: center;
+  color: #ffff;
+  padding: 8px;
+  font-size: 2rem;
+}
+
+.style-center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.style-center2 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+  .bem-vindo {
+    font-size: 14px;
+  }
+}

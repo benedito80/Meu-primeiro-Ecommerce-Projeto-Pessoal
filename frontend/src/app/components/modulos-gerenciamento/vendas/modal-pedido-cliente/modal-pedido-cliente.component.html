@@ -1,0 +1,45 @@
+<div class="style-modal tyle-header">
+  <div class="modal-dialog modal-lg style-width" role="document">
+    <div class="modal-content">
+      <div style="background-color: #1993e0">
+        <h5 class="style-inf">INFORME OS DADOS, POR FAVOR!</h5>
+      </div>
+      <div class="modal-body">
+        <form
+          [formGroup]="formulario"
+          (ngSubmit)="onSubmit()"
+          class="form-horizontal"
+        >
+          <div>
+            <div class="form-group row">
+              <label
+                for="quantidade"
+                class="col-sm-12"
+                style="margin-bottom: 0; color: red; font-size: 14px"
+                >Disponivel: {{ valorEstoque }} und</label
+              >
+              <div class="col-sm-12">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="quantidade"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 10px">
+            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            <button
+              type="button"
+              class="btn btn-default btn-sm"
+              (click)="onCancel()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

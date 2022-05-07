@@ -1,0 +1,96 @@
+* {
+  font-size: 1.7rem;
+}
+
+.main-section {
+  border: 1px solid #858b66;
+  background: #fff;
+}
+.profile-header {
+  background: #858b66;
+  height: 80px;
+  margin-bottom: 15px;
+}
+.user-detail {
+  margin: -50px 0 30px 0;
+}
+
+.container {
+  padding-bottom: 40px;
+  min-height: 500px;
+}
+
+.bem-vindo {
+  text-align: center;
+  color: #ffff;
+  padding: 8px;
+  font-size: 2rem;
+}
+
+.dica {
+  display: none;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+}
+.user-details h5 {
+  margin: 15px 0 5px 0;
+}
+
+.style-left {
+  float: left;
+  margin-top: 15px;
+  margin-left: 15px;
+  color: white;
+}
+
+.style-right {
+  float: right;
+  margin-top: 15px;
+  margin-right: 10px;
+  color: white;
+}
+
+.style-font {
+  font-size: 20px;
+  margin-top: 10px;
+}
+.style-font2 {
+  font-size: 20px;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    margin: 3% 5%;
+    padding: 20px 10px 10px 0px;
+  }
+
+  .style-font {
+    font-size: 14px;
+  }
+
+  .dica {
+    display: inline;
+  }
+
+  .style-font2 {
+    font-size: 14px;
+  }
+
+  .style-left {
+    margin-top: 20px;
+    margin-left: 5px;
+  }
+
+  .bem-vindo {
+    font-size: 14px;
+  }
+
+  .style-right {
+    margin-top: 20px;
+    margin-right: 0px;
+  }
+}

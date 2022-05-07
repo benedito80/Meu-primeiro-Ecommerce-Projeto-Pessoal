@@ -1,0 +1,118 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+
+<div class="small-container cart-page style-width">
+  <div style="margin-top: -30px">
+    <button
+      type="button"
+      class="btn btn-secondary float-right"
+      [routerLink]="['novo']"
+      style="font-size: 14px; margin: -40px 5px 5px"
+      (click)="finalizarPedido()"
+    >
+      Finalizar Pedido
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-success float-right"
+      [routerLink]="['novo']"
+      style="font-size: 14px; margin-top: -40px; margin-bottom: 5px"
+    >
+      Comprar +
+    </button>
+  </div>
+
+  <table class="table table-hover" *ngIf="cadastro$; else loading">
+    <tr>
+      <th style="width: 60%">Itens</th>
+      <th style="width: 10%; text-align: center">Quantidade</th>
+      <th style="width: 10%; text-align: center">
+        <div *ngIf="mostrar">Estoque</div>
+      </th>
+      <th style="width: 20%">Sub-Total</th>
+    </tr>
+    <h5 *ngIf="verCarrinho()" class="mt-4">Carrinho Vazio...</h5>
+    <tr
+      *ngFor="
+        let cadastro of cadastro$
+          | paginate: { itemsPerPage: count, currentPage: p };
+        index as i
+      "
+    >
+      <td *ngFor="let item of cadastro.listaVenda">
+        <div class="cart-info">
+          <img src="{{ item.products.post.url }}" alt="" />
+          <div>
+            <span>{{ item.products.productname }}</span> -
+            <span>{{ item.products.productDescription }}</span
+            ><br />
+            <small>{{ item.products.productPrice | currency }}</small>
+            <br />
+            <a
+              style="cursor: pointer; margin-right: 10px; font-size: 2rem"
+              (click)="onDelete(cadastro)"
+              >Remover</a
+            >
+          </div>
+        </div>
+      </td>
+      <td style="text-align: center" *ngFor="let item of cadastro.listaVenda">
+        <form
+          id="add-form"
+          (ngSubmit)="f.form.valid && saveCar(f)"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="form-group">
+            <input
+              type="number"
+              [(ngModel)]="item.quantidade"
+              name="quantidade"
+              style="width: 70px; text-align: center"
+              (focus)="editCar(cadastro)"
+              (change)="saveCar(f)"
+            />
+          </div>
+        </form>
+      </td>
+
+      <td style="padding-top: 23px" *ngFor="let item of cadastro.listaVenda">
+        <div *ngIf="mostrar" style="color: red; text-align: center">
+          {{ item.products.estoque }}
+        </div>
+      </td>
+
+      <td style="padding-top: 23px" *ngFor="let item of cadastro.listaVenda">
+        {{ calc(item.products.productPrice, item.quantidade) | currency }}
+      </td>
+    </tr>
+  </table>
+
+  <div class="total-price">
+    <table>
+      <tr>
+        <td>Total</td>
+        <td>{{ caixaTotal() | currency }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="float: right; margin-top: 20px">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<!--ESSE ng-template QUE TEM O NOME #loading VAI LA NA LINHA 12 (else loading) E SO MOSTRA DE TIVER DADOS-->
+<ng-template #loading>
+  <span style="color: black"
+    ><i>
+      <hr style="margin-top: 40px" />
+      <b class="style-loading">Carregando carrinho.....</b></i
+    >
+  </span>
+</ng-template>

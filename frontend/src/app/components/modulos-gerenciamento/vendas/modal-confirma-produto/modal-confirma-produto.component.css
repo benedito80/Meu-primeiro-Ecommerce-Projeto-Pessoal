@@ -1,0 +1,49 @@
+* {
+  font-size: 1.7rem;
+}
+
+.style-f {
+  font-size: 2.5rem;
+}
+
+.style-modal {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.style-header {
+  min-height: 500px;
+}
+
+.style-info {
+  text-align: center;
+  color: white;
+}
+
+.style-width {
+  width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .style-info {
+    font-size: 14px;
+  }
+
+  .style-width {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .style-f {
+    font-size: 2rem;
+  }
+}

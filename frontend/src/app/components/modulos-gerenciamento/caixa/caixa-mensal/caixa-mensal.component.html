@@ -1,0 +1,129 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+
+<div style="margin: 20px auto 0; width: 95%; min-height: 600px">
+  <div>
+    <table
+      class="table table-hover"
+      style="font-size: 1.2rem"
+      *ngIf="cxs; else loading"
+    >
+      <tr>
+        <th scope="col" style="width: 5%; padding-left: 20px">Nº</th>
+        <th scope="col" style="padding-right: 20px; text-align: justify">
+          DADOS DO CAIXA
+        </th>
+      </tr>
+      <h5 *ngIf="existDados()" class="mt-4 ml-3">Sem registro de caixa...</h5>
+
+      <tr
+        *ngFor="
+          let item of cxs | paginate: { itemsPerPage: count, currentPage: p };
+          index as i
+        "
+      >
+        <td
+          style="
+            text-align: justify;
+            vertical-align: middle;
+            padding-left: 20px;
+          "
+        >
+          {{ i + 1 }}
+        </td>
+        <td style="text-align: justify; vertical-align: middle">
+          <span style="font-weight: bold"
+            >Data:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.data | date: "dd-MM-yyyy | h:mm a"
+            }}</span></span
+          ><br />
+
+          <span style="font-weight: bold"
+            >Produtos:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.quantidade
+            }}</span></span
+          ><br />
+
+          <span style="font-weight: bold"
+            >Status:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.status
+            }}</span></span
+          ><br />
+
+          <span style="font-weight: bold"
+            >Somado:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.adicional | currency
+            }}</span></span
+          ><br />
+
+          <span style="font-weight: bold"
+            >Extraido:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.desconto | currency
+            }}</span></span
+          ><br />
+
+          <span style="font-weight: bold"
+            >Tarifa:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.tarifa | currency
+            }}</span></span
+          ><br />
+
+          <span style="font-weight: bold"
+            >Total | Caixa:
+            <span style="font-weight: normal; color: #ca4560">{{
+              item.caixa | currency
+            }}</span></span
+          ><br />
+
+          <div class="cart-info">
+            <div>
+              <div style="margin-top: 15px"></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div style="float: right">
+      <div
+        style="
+          float: right;
+          margin-top: 20px;
+          font-size: 20px;
+          color: #ca4560;
+          font-weight: bold;
+        "
+      >
+        <div style="color: black">
+          <span style="padding-right: 94px"> Tarifa:</span>
+          <span style="padding-right: 0">{{ tarifaTotal() | currency }}</span>
+        </div>
+
+        <hr style="border: #ca4560 solid 1px" />
+        <div>
+          <span style="padding-right: 100px"> Total:</span>
+          <span style="padding-right: 0">{{ caixaTotal() | currency }}</span>
+        </div>
+      </div>
+
+      <div class="text-right mt-5">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <h5 style="margin: 10px 0 0 15px">Carregando histórico dos caixas.....</h5>
+  <hr />
+</ng-template>

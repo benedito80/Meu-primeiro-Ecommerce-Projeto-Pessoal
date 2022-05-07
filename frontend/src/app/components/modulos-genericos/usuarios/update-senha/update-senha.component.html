@@ -1,0 +1,149 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+<div class="style-header">
+  <div class="style-left">
+
+    <div class="card" style="width: 100%">
+      <div class="card-body" style="padding: 20px 30px">
+        <form
+          #signInForm="ngForm"
+          (ngSubmit)="signInForm.valid && onSubmit(signInForm)"
+        >
+          <div
+            style="
+              background-color: #eeeed1;
+              border-radius: 15px;
+              padding: 10px 20px;
+            "
+          >
+            <div class="form-group row">
+              <div class="col-sm-9">
+                <input
+                  type="hidden"
+                  style="margin-top: 0"
+                  class="form-control"
+                  id="email"
+                  readonly="false"
+                  name="email"
+                  [(ngModel)]="email"
+                  placeholder="email"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="password" class="col-sm-3 col-form-label"
+                >Senha Atual</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="password"
+                  class="form-control"
+                  style="margin-top: 0"
+                  name="password"
+                  id="password"
+                  autocomplete="false"
+                  [(ngModel)]="model.password"
+                  placeholder="Senha"
+                  required="required"
+                  minlength="4"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="col-sm-12">
+                <button
+                  style="margin-bottom: -5px"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Verificar Dados
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="style-right">
+    <div class="card" style="width: 100%" *ngIf="usuario.mostrar">
+      <div class="card-body" style="padding: 20px 30px">
+        <form
+          id="add-form"
+          (ngSubmit)="f.form.valid && saveUser(f)"
+          #f="ngForm"
+          novalidate
+        >
+          <div
+            style="
+              background-color: #eeeed1;
+              border-radius: 15px;
+              padding: 10px 20px;
+            "
+          >
+            <div class="form-group row">
+              <label for="password" class="col-sm-3 col-form-label"
+                >Nova Senha</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="password"
+                  [(ngModel)]="obj.password"
+                  id="password"
+                  name="password"
+                  (change)="ver()"
+                  style="padding: 20px"
+                  #password="ngModel"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="password2" class="col-sm-3 col-form-label"
+                >Confirmar Senha</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="password"
+                  [(ngModel)]="obj.password2"
+                  id="password2"
+                  name="password2"
+                  (change)="ver()"
+                  style="padding: 20px"
+                  #password2="ngModel"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div *ngIf="senhaDiverge" style="color: red">
+              Os campos não confere!
+            </div>
+
+            <div class="col-sm-12">
+              <button
+                style="margin-bottom: -5px"
+                type="submit"
+                class="btn btn-primary"
+                [(disabled)]="botDis"
+              >
+                Salvar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

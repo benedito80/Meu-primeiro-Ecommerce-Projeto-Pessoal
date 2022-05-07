@@ -1,0 +1,37 @@
+* {
+  font-size: 1.7rem;
+}
+.style-input {
+  margin-top: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.style-label {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.style-modal {
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  background: black;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.style-width {
+  width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+  .style-width {
+    width: 98%;
+  }
+}

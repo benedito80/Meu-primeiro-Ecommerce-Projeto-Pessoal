@@ -1,0 +1,137 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+<div class="style-body">
+  <div class="container">
+    <form
+      id="add-form"
+      (ngSubmit)="f.form.valid && saveUser(f)"
+      #f="ngForm"
+      novalidate
+      class="form-filmes"
+    >
+      <h2>Realizar Cadastro</h2>
+      <div class="form-campo form-group">
+        <label for="fullName">Nome</label>
+        <input
+          type="text"
+          [(ngModel)]="user.fullName"
+          id="fullName"
+          name="fullName"
+          #fullName="ngModel"
+          placeholder="Informe nome completo."
+          required
+          [ngClass]="{ 'is-invalid': f.submitted && fullName.invalid }"
+        />
+        <div *ngIf="f.submitted && fullName.invalid" class="invalid-feedback">
+          <div *ngIf="fullName.errors.required">O nome é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="form-campo pequeno">
+        <label for="cpf">Cpf</label>
+        <input
+          [(ngModel)]="user.cpf"
+          id="cpf"
+          name="cpf"
+          placeholder="Informe apenas numeros"
+          #cpf="ngModel"
+          [textMask]="{ mask: cpfMask }"
+          required
+          [ngClass]="{ 'invalid-textbox': f.submitted && cpf.invalid }"
+        />
+        <div *ngIf="f.submitted && cpf.errors?.required">
+          <div class="validation-message">
+            <p style="font-size: 12px; color: crimson; margin-left: 5px">
+              O cpf é obrigatório.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-campo medio">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="user.email"
+          id="email"
+          name="email"
+          #email="ngModel"
+          [pattern]="emailRegex"
+          placeholder="Informe um email válido"
+          required
+          [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+        />
+        <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Email é obrigatório</div>
+        </div>
+
+        <div
+          *ngIf="f.submitted && email.errors?.pattern"
+          class="invalid-feedback"
+        >
+          <div>Email inválido!.</div>
+        </div>
+      </div>
+
+      <div class="form-campo">
+        <label for="password">Senha</label>
+        <div class="input-group">
+          <input
+            type="{{ tipo }}"
+            [(ngModel)]="user.password"
+            id="password"
+            minlength="8"
+            name="password"
+            placeholder="Mínimo de 8 digitos"
+            #password="ngModel"
+            required
+            [ngClass]="{
+              'invalid-textbox': f.submitted && password.invalid
+            }"
+          />
+
+          <div style="cursor: pointer; font-size: 12px" (click)="muda()">
+            <span style="color: blue">Visualizar Senha.</span>
+          </div>
+
+          <div *ngIf="f.submitted && password.errors?.required">
+            <div class="validation-message">
+              <p style="font-size: 12px; color: crimson; margin-left: 5px">
+                A senha é obrigatória.
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="f.submitted && password.errors?.minlength">
+            <div class="validation-message">
+              <p style="font-size: 12px; color: crimson; margin-left: 5px">
+                Minimo de 8 caracteres.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <button class="mr-1" type="reset" (click)="cleanForm(f)">Limpar</button>
+        <button type="submit">Salvar</button>
+      </footer>
+      <div
+        style="
+          text-align: center;
+          color: red;
+          margin-top: -60px;
+          margin-bottom: 30px;
+        "
+      >
+        <a style="cursor: pointer" (click)="meuCadastro()"
+          >Ja tenho cadastro!</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

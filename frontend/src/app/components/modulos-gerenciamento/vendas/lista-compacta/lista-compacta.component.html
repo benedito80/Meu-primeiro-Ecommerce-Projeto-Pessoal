@@ -1,0 +1,76 @@
+<!--Diplay lg-->
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+
+<div class="small-container cart-page" style="min-height: 400px">
+  <div style="margin: 2%">
+    <div>
+      <table class="table table-hover">
+        <tr style="background-color: #ca4560; color: white">
+          <th style="padding-left: 20px">Nº</th>
+          <th>Lista Produtos</th>
+        </tr>
+
+        <tr *ngFor="let item of rota.listaVenda; index as i">
+          <td class="style-center2" style="width: 5%; padding-left: 20px">
+            {{ i + 1 }}
+          </td>
+          <td>
+            <span style="font-weight: normal; color: #ca4560">Produtos: </span
+            ><span>{{ item.products.productname }}</span
+            ><br />
+
+            <span style="font-weight: normal; color: #ca4560">Qtd: </span
+            ><span>{{ item.quantidade }}</span
+            ><br />
+
+            <span style="font-weight: normal; color: #ca4560">Descrição: </span
+            ><span>{{ item.products.productDescription }}</span
+            ><br />
+
+            <span style="font-weight: normal; color: #ca4560">Valor Und: </span
+            ><span>{{ item.products.productPrice | currency }}</span
+            ><br />
+
+            <span style="font-weight: normal; color: #ca4560">Total: </span
+            ><span>{{ item.total | currency }}</span
+            ><br />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="float: right; margin: 2%">
+    <span
+      ><span style="font-weight: normal; color: #ca4560">Data Venda: </span>
+      {{ rota.data | date: "dd/MM/yyyy" }}</span
+    ><br />
+    <span
+      ><span style="font-weight: normal; color: #ca4560">Cliente: </span
+      >{{ rota.username.fullName }}</span
+    ><br />
+    <span
+      ><span style="font-weight: normal; color: #ca4560">Contato: </span>
+      {{ rota.contato }}</span
+    ><br />
+    <span
+      ><span style="font-weight: normal; color: #ca4560">End.Entrega: </span>
+      {{ rota.enderecoEntrega }}</span
+    ><br />
+    <span
+      ><span style="font-weight: normal; color: #ca4560">Pagamento: </span
+      >{{ rota.payment }}</span
+    ><br />
+
+    <hr />
+    <span style="color: red; font-size: 2rem; margin-top: 20px"
+      ><span style="font-weight: normal; font-size: 2rem">Total Venda: </span
+      >{{ rota.caixa | currency }}</span
+    >
+  </div>
+</div>

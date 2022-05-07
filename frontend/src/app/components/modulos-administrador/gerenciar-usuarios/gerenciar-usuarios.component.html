@@ -1,0 +1,270 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+<div class="style-header">
+
+  <div class="style-left">
+    <div class="card" style="width: 100%">
+      <div style="background-color: #ca4560; color: #fff">
+        <h6 class="card-header" style="padding: 8px 8px 8px 30px">
+          Adicionar / Atualizar Usuários
+        </h6>
+      </div>
+
+      <div class="card-body" style="padding: 20px 30px">
+        <form
+          id="add-form"
+          (ngSubmit)="f.form.valid && saveUser(f)"
+          #f="ngForm"
+          novalidate
+        >
+          <div style="width: 100%; display: flex; margin-top: 10px">
+            <label for="fullName" style="width: 30%; margin-top: 20px"
+              >Nome</label
+            >
+            <div style="width: 70%">
+              <input
+                class="form-control-plaintext"
+                type="text"
+                [(ngModel)]="user.fullName"
+                id="fullName"
+                name="fullName"
+                style="margin-bottom: 10px; padding: 20px"
+                #fullName="ngModel"
+                required
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.submitted && fullName.invalid }"
+              />
+              <div
+                *ngIf="f.submitted && fullName.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="fullName.errors.required" style="margin-top: -10px">
+                  O nome é obrigatório
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="width: 100%; display: flex; margin-top: 10px">
+            <label for="email" style="width: 30%; margin-top: 20px"
+              >Email</label
+            >
+            <div style="width: 70%">
+              <input
+                class="form-control-plaintext"
+                [(ngModel)]="user.email"
+                id="email"
+                name="email"
+                style="margin-bottom: 10px; padding: 20px"
+                #email="ngModel"
+                [pattern]="emailRegex"
+                required
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+              />
+              <div
+                *ngIf="f.submitted && email.errors?.pattern"
+                class="invalid-feedback"
+              >
+                <div style="margin-top: -10px">Email inválido!</div>
+              </div>
+              <div
+                *ngIf="f.submitted && email.errors?.required"
+                class="invalid-feedback"
+              >
+                <div style="margin-top: -10px">Email obrigatório!</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="width: 100%; display: flex; margin-top: 10px">
+            <label for="cpf" style="width: 30%; margin-top: 20px">CPF</label>
+            <div style="width: 70%">
+              <input
+                class="form-control-plaintext"
+                [(ngModel)]="user.cpf"
+                id="cpf"
+                name="cpf"
+                [textMask]="{ mask: cpfMask }"
+                style="margin-bottom: 10px; padding: 20px"
+                #cpf="ngModel"
+                required
+                class="form-control"
+                [ngClass]="{ 'is-invalid': f.submitted && cpf.invalid }"
+              />
+              <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback">
+                <div *ngIf="cpf.errors.required" style="margin-top: -10px">
+                  Cpf é obrigatória
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="width: 100%; display: flex; margin-top: 10px">
+            <label for="email" style="width: 30%">Perfil | Ativo:</label>
+
+            <div style="width: 35%; margin-right: 5px">
+              <select
+                name="funcao"
+                id="funcao"
+                [(ngModel)]="user.funcao"
+                class="form-control"
+                style="border: rgba(189, 179, 179, 0.8) solid 1px"
+              >
+                <option value="admin">Admin</option>
+                <option value="cliente">Cliente</option>
+                <option value="gerente">Gerente</option>
+                <option value="empacotador">Empacotador</option>
+              </select>
+            </div>
+
+            <div style="width: 35%">
+              <select
+                name="ativo"
+                id="ativo"
+                [(ngModel)]="user.ativo"
+                class="form-control"
+                #ativo="ngModel"
+                style="border: rgba(189, 179, 179, 0.8) solid 1px"
+                [ngClass]="{
+                  'is-invalid': f.submitted && ativo.invalid
+                }"
+              >
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="width: 100%; display: flex; margin-top: 10px">
+            <label for="password" style="width: 30%; margin-top: 20px"
+              >Password</label
+            >
+            <div style="width: 70%">
+              <input
+                type="password"
+                [(ngModel)]="user.password"
+                id="password"
+                minlength="8"
+                name="password"
+                style="padding: 20px"
+                #password="ngModel"
+                required
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.submitted && password.invalid
+                }"
+              />
+              <div
+                *ngIf="f.submitted && password.errors.required"
+                class="invalid-feedback"
+                style="margin-top: -10px"
+              >
+                A senha é obrigatória
+              </div>
+
+              <div
+                *ngIf="f.submitted && password.errors?.minlength"
+                class="invalid-feedback"
+                style="margin-top: -10px"
+              >
+                Mínimo 8 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <button
+              style="margin-bottom: -5px"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Salvar
+            </button>
+            <button
+              type="reset"
+              style="margin-bottom: 0"
+              class="btn btn-secondary"
+              (click)="cleanForm(f)"
+            >
+              Limpar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="style-right">
+    <div class="divContainer">
+      <div class="conteudoNormal">
+        <div style="width: 100%">
+          <table class="table table-hover">
+            <tr>
+              <th style="padding-left: 20px">Usuários Cadastrados</th>
+              <th style="padding-right: 20px">Ativo</th>
+            </tr>
+
+            <tr
+              *ngFor="
+                let item of users
+                  | paginate: { itemsPerPage: count, currentPage: p };
+                index as i
+              "
+            >
+              <td>
+                <div class="cart-info">
+                  <img src="../../../../assets/user-login.png" alt="" />
+                  <div>
+                    <span>
+                      <b style="color: #ca4560">Usuário(a): </b>
+                      {{ item.fullName }}</span
+                    ><br />
+
+                    <span>
+                      <b style="color: #ca4560">CPF: </b>
+                      {{ item.cpf }}</span
+                    ><br />
+
+                    <span>
+                      <b style="color: #ca4560">Email: </b>{{ item.email }}</span
+                    ><br />
+                    <span style="margin-right: 30px">
+                      <b style="color: #ca4560">Perfil: </b>
+                      {{ item.funcao }}</span
+                    >
+
+                    <a
+                      style="
+                        cursor: pointer;
+                        margin-right: 10px;
+                        margin-left: 50px;
+                      "
+                      (click)="editUser(item)"
+                      >Editar</a
+                    >
+                    <a
+                      style="cursor: pointer; margin-right: 10px"
+                      (click)="deleteUser(item)"
+                      >Deletar</a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td style="padding-right: 30px; vertical-align: middle">
+                <span> {{ item.ativo == 1 ? "Sim" : "Não" }}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

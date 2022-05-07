@@ -1,0 +1,121 @@
+* {
+  font-size: 1.7rem;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.style-table {
+  margin: 5% 5% 0;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+.style-center {
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.style-dados {
+  font-size: 16px;
+}
+
+.tx {
+  text-align: center;
+}
+
+.style-header {
+  min-height: 600px;
+}
+
+.style-detalhe {
+  margin: 0 4px;
+  background-color: #ca4560;
+  color: #fff;
+  border-bottom: none;
+  border-radius: 15px;
+}
+
+th {
+  text-align: left;
+  padding: 5px;
+  color: #ffffff;
+  background: #ca4560;
+  font-weight: normal;
+}
+
+.bem-vindo {
+  text-align: center;
+  color: #ffff;
+  padding: 8px;
+  font-size: 2rem;
+}
+
+.loading {
+  color: black;
+  font-size: 20px;
+}
+
+.style-ped {
+  margin: 2% 2% 0;
+}
+
+@media only screen and (max-width: 768px) {
+  * {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .style-dados {
+    font-size: 13px;
+  }
+  .style-detalhe {
+    font-size: 13px;
+  }
+
+  .bem-vindo {
+    font-size: 14px;
+  }
+
+  .style-ped {
+    margin: 1% 0 0;
+  }
+
+  th {
+    font-size: 14px;
+  }
+
+  .loading {
+    font-size: 16px;
+  }
+
+  .style-h4 {
+    font-size: 16px;
+  }
+}

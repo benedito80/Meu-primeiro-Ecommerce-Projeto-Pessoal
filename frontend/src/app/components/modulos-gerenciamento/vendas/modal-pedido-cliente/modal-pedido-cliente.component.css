@@ -1,0 +1,41 @@
+* {
+  font-size: 1.7rem;
+}
+
+.style-modal {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.style-inf {
+  text-align: center;
+  padding: 10px;
+  color: white;
+}
+
+.style-width {
+  width: 30%;
+}
+
+.style-header {
+  min-height: 500px;
+}
+
+@media only screen and (max-width: 600px) {
+  .style-inf {
+    padding-top: 15px;
+    font-size: 14px;
+  }
+
+  .style-width {
+    width: 70%;
+  }
+}

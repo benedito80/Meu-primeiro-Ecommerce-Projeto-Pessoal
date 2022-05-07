@@ -1,0 +1,130 @@
+<!-- Modal -->
+<div class="style-modal">
+  <div class="modal-dialog modal-lg style-width" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #1993e0">
+        <h6 style="margin-bottom: -7px; color: white">
+          INFORME OS DADOS, POR FAVOR!
+        </h6>
+      </div>
+
+      <!-- Modal -->
+
+      <div class="modal-body">
+        <form
+          [formGroup]="formulario"
+          (ngSubmit)="onSubmit()"
+          class="form-horizontal"
+        >
+          <div class="form-group row">
+            <label for="contato" class="col-sm-12" style="margin-bottom: 0"
+              >Contato:</label
+            >
+            <div class="col-sm-12">
+              <input
+                class="form-control"
+                id="contato"
+                formControlName="contato"
+                placeholder="(89) 90000-0000"
+                [textMask]="{ mask: contatoMask }"
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="enderecoEntrega"
+              class="col-sm-12"
+              style="margin-bottom: 0"
+              >Endereço da Entrega:</label
+            >
+            <div class="col-sm-12">
+              <input
+                type="text"
+                class="form-control"
+                id="enderecoEntrega"
+                formControlName="enderecoEntrega"
+                placeholder="Ex: Rua dos Anjos, Nº 00. Bairro: centro."
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <b>FORMA DE PAGAMENTO: </b>
+            <div class="form-check">
+              <input
+                class="form-check-input style-input"
+                type="radio"
+                formControlName="payment"
+                id="exampleRadios1"
+                value="Avista|Entrega"
+                checked
+              />
+              <label class="form-check-label style-label" for="exampleRadios1">
+                Avista|Entrega
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input style-input"
+                type="radio"
+                formControlName="payment"
+                id="exampleRadios2"
+                value="Cartão|Na entrega"
+              />
+              <label class="form-check-label style-label" for="exampleRadios2">
+                Cartão|Na entrega
+              </label>
+            </div>
+
+            <div class="form-check disabled">
+              <input
+                class="form-check-input style-input"
+                type="radio"
+                formControlName="payment"
+                id="exampleRadios3"
+                value="Tranf.Bancaria"
+              />
+              <label class="form-check-label style-label" for="exampleRadios3">
+                Tranf.Bancaria
+              </label>
+            </div>
+
+            <div class="form-check disabled">
+              <input
+                class="form-check-input style-input"
+                type="radio"
+                formControlName="payment"
+                id="exampleRadios4"
+                value="Retirada|Estabelecimento"
+              />
+              <label class="form-check-label style-label" for="exampleRadios4">
+                Retirada|Estabelecimento
+              </label>
+            </div>
+          </div>
+          <div style="margin-top: 10px">
+            <button
+              type="submit"
+              class="btn btn-primary btn-sm"
+              [disabled]="formulario.invalid"
+            >
+              Salvar
+            </button>
+            <button
+              type="button"
+              class="btn btn-default btn-sm"
+              (click)="onCancel()"
+            >
+              Cancelar
+            </button>
+          </div>
+          <div style="float: right; color: red" *ngIf="formulario.invalid">
+            Preencher todos os campos!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

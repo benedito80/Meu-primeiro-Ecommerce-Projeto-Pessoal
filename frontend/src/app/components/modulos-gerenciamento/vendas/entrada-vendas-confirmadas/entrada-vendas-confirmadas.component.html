@@ -1,0 +1,104 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+<div
+  class="mt-4"
+  style="
+    min-height: 600px;
+    font-family: Poppins, Open Sans, verdana, courier, arial, helvetica;
+  "
+>
+  <div class="row mt-2" style="margin: 5% 2% 0">
+    <div class="col">
+      <table
+        class="table table-hover"
+        *ngIf="listaVenda$ as cadastros; else loading"
+      >
+        <thead>
+          <tr style="background-color: #ca4560; color: white">
+            <th scope="col" style="width: 5%; padding-left: 20px">Nº</th>
+            <th scope="col" style="width: 95%">ENTREGAS PENDENTES</th>
+          </tr>
+
+          <h5 *ngIf="existDados()" class="mt-4 ml-3">
+            Sem registro de novas vendas...
+          </h5>
+        </thead>
+        <tbody
+          *ngFor="
+            let cadastro of listaVenda$
+              | paginate: { itemsPerPage: count, currentPage: p };
+            index as i
+          "
+        >
+          <tr>
+            <td class="style-center2" style="padding-left: 20px">
+              {{ i + 1 }}
+            </td>
+            <td>
+              <span style="font-weight: normal; color: #ca4560">Data: </span
+              ><span>{{ cadastro.data | date: "dd-MM-yyyy h:mm a" }}</span
+              ><br />
+
+              <span style="font-weight: normal; color: #ca4560">Cliente: </span
+              ><span>{{ cadastro.username.fullName }}</span
+              ><br />
+
+              <span style="font-weight: normal; color: #ca4560">Contato: </span
+              ><span>{{ cadastro.contato }}</span
+              ><br />
+
+              <span style="font-weight: normal; color: #ca4560"
+                >Pagamento: </span
+              ><span>{{ cadastro.payment }}</span
+              ><br />
+
+              <span style="font-weight: normal; color: #ca4560">Produtos: </span
+              ><span>{{ cadastro.listaVenda.length }}</span
+              ><br />
+
+              <span style="font-weight: normal; color: #ca4560">Status: </span
+              ><span>{{ cadastro.status }}</span
+              ><br />
+
+              <span style="font-weight: normal; color: #ca4560">Total: </span
+              ><span>{{ cadastro.caixa | currency }}</span
+              ><br />
+
+              <div class="float-right style-center">
+                <button
+                  class="btn btn-outline-info mb-1 btn-sm"
+                  (click)="listaVenda(cadastro._id)"
+                  style="
+                    margin: 0 4px;
+                    background-color: #ca4560;
+                    color: #fff;
+                    border-bottom: none;
+                    border-radius: 15px;
+                  "
+                >
+                  Detalhes
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div style="float: right; margin: 0 80px 0 0">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<ng-template #loading>
+  <span style="color: black; font-size: 20px"
+    ><i>
+      <hr style="margin-top: 30px" />
+      <b>Carregando lista......</b></i
+    >
+  </span>
+</ng-template>

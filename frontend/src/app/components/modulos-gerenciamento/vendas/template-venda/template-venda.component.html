@@ -1,0 +1,183 @@
+<div class="style-right" *ngIf="prod$; else loading">
+  <section class="home">
+    <div class="slide-container active">
+      <div class="slide">
+        <div class="content">
+          <span
+            ><a href="http://shoppingoeiras.com">ShoppingOeiras.com</a></span
+          >
+          <h3>& Valmira Cosméticos</h3>
+          <p>
+            A parceria que tem a satisfação de atender bem, realise seus pedidos
+            que entregaremos ai em sua casa!
+          </p>
+          <a [routerLink]="['/auth/login']" class="btn">{{ valLogado }}</a>
+        </div>
+
+        <div class="image">
+          <img src="../assets/valmira.png" class="shoe" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="style-menu">
+    <div class="menu-left">
+      <span style="color: white; font-size: 14px">BUSCA POR CATEGORIA</span>
+      <select
+        style="background-color: #ffff; border: 1px solid white; height: 30px"
+        class="form-control"
+        aria-label="Default select example"
+        [(ngModel)]="categoria"
+        name="categoria"
+        (change)="option_Categoria()"
+      >
+        <option
+          value="{{ p.nome }}"
+          *ngFor="let p of selectCategorias; index as i"
+        >
+          {{ p.nome }}
+        </option>
+      </select>
+    </div>
+
+    <div class="menu-right">
+      <span style="color: white; font-size: 14px">BUSCA POR PRODUTO</span>
+      <select
+        style="background-color: #ffff; border: 1px solid white; height: 30px"
+        class="form-control"
+        aria-label="Default select example"
+        [(ngModel)]="produto"
+        name="produto"
+        (change)="option_Produto()"
+      >
+        <option
+          value="{{ p.nome }}"
+          *ngFor="let p of selectProdutos; index as i"
+        >
+          {{ p.nome }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <section class="products mt-p">
+    <h1 class="heading">
+      {{ linha }} <span class="font-categoria">{{ categoria }}</span>
+    </h1>
+
+    <div style="padding: 30px 30px 80px" *ngIf="prod$.length == 0">
+      <section>
+        <h4 style="color: red; text-transform: none; font-size: 3rem">
+          Desculpas, não existe produtos cadastrado para
+          <span style="text-transform: lowercase; font-size: 3rem">{{
+            categoria
+          }}</span
+          >...
+        </h4>
+      </section>
+    </div>
+
+    <div class="box-container">
+      <div class="box" *ngFor="let item of prod$">
+        <a href="{{ this?.item?.post?.url }}" target="_blank">
+          <img src="{{ this?.item?.post?.url }}" alt="" />
+        </a>
+        <div class="content">
+          <h3 style="min-height: 70px">
+            {{ item.productname }} {{ item.productDescription }}
+          </h3>
+          <p class="produto-volume">
+            {{ item.productVolume }}
+          </p>
+          <div class="price">
+            {{ item.productPrice | currency }}
+          </div>
+          <a (click)="comprar(item)" class="btn">COMPRAR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service">
+    <div class="box-container">
+      <div class="box">
+        <i class="fas fa-bullhorn"></i>
+        <h3>ShoppingOeiras.Com</h3>
+        <p class="style-new">
+          Destinado a serviços e vendas online em geral, você comerciante ou
+          prestadores de serviços entre em contato conosco e atenda seus
+          clientes com muito mais comodidade.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-undo"></i>
+        <h3>Forma de Pagamento</h3>
+        <p class="style-new">
+          Não pedimos qualquer tipo de cadastro de cartões de crédito ou dados
+          similares, você escolhe a forma de pagamento e entrega no ato da
+          compra ou prestação de nossos serviços.
+        </p>
+      </div>
+
+      <div class="box">
+        <i class="fas fa-headset"></i>
+        <h3>support hr.comercial</h3>
+        <p class="style-new">
+          A parceria a qual lhe atende buscará tirar todas suas dúvidas, ouvir
+          elogios ou reclamações via canais de atendimento: e-mail ou WhatsApp!
+          <br />
+          (89) 98816-6340
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="products mt-5 mb-3" *ngIf="categoria_promocao$; else loading">
+    <h1 class="heading">
+      PROMOÇÕES DO<span class="font-categoria"> DIA</span>
+    </h1>
+
+    <div
+      style="padding: 30px 30px 80px"
+      *ngIf="categoria_promocao$.length == 0"
+    >
+      <section>
+        <h4 style="color: red; text-transform: none; font-size: 3rem">
+          Desculpas, não existe produtos cadastrado para promoções...
+        </h4>
+      </section>
+    </div>
+
+    <div class="box-container">
+      <div class="box" *ngFor="let item of categoria_promocao$">
+        <a href="{{ this?.item?.post?.url }}" target="_blank">
+          <img src="{{ this?.item?.post?.url }}" alt="" />
+        </a>
+        <div class="content">
+          <h3 style="min-height: 70px">
+            {{ item.productname }} {{ item.productDescription }}
+          </h3>
+          <p class="produto-volume">
+            {{ item.productVolume }}
+          </p>
+          <div class="price">
+            {{ item.productPrice | currency }}
+          </div>
+          <a (click)="comprar(item)" class="btn">COMPRAR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div style="min-height: 600px">
+  <ng-template #loading>
+    <div style="color: red; min-height: 50px">
+      <i>
+        <b class="style-carregando">Carregando produto...</b>
+      </i>
+    </div>
+  </ng-template>
+</div>

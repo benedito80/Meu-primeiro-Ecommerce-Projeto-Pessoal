@@ -1,0 +1,18 @@
+<div
+  class="alert alert-{{ type }} no-margin"
+  role="alert"
+  style="padding-left: 10px; position: absolute; margin: 20% auto 0%"
+>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="alert"
+    aria-label="Close"
+    (click)="onClose()"
+  >
+    <span style="padding-left: 10px; font-size: 2rem" aria-hidden="true"
+      >&times;</span
+    >
+  </button>
+  {{ message }}
+</div>

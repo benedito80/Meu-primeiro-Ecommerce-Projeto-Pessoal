@@ -1,0 +1,180 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+
+<div class="small-container cart-page style-width">
+  <div style="margin-top: -30px">
+    <button
+      type="button"
+      class="btn btn-success float-right"
+      style="font-size: 14px; margin-top: -40px; margin-left: 2px"
+      (click)="validarVenda()"
+    >
+      Validar Venda
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-secondary float-right"
+      (click)="endereco()"
+      style="font-size: 14px; margin-top: -40px"
+      data-toggle="modal"
+      data-target="#exampleModal2"
+      data-whatever="@getbootstrap"
+    >
+      End.Cobrança
+    </button>
+  </div>
+
+  <table
+    class="table table-hover"
+    *ngIf="listaVenda$ as cadastros; else loading"
+  >
+    <tr>
+      <th>Produtos Detalhados</th>
+      <th>Quantidade</th>
+      <th>Total</th>
+    </tr>
+
+    <tr
+      *ngFor="
+        let cadastro of listaVenda$
+          | paginate: { itemsPerPage: count, currentPage: p };
+        index as i
+      "
+    >
+      <td>
+        <div class="cart-info">
+          <img src="{{ cadastro.products.post?.url }}" alt="" />
+          <div>
+            <span>{{ cadastro.products.productname }}</span> -
+            <span>{{ cadastro.products.productDescription }}</span
+            ><br />
+            <small>{{ cadastro.precoVenda | currency }}</small>
+            <br />
+          </div>
+        </div>
+      </td>
+      <td>
+        <input
+          type="number"
+          readonly="false"
+          value="{{ cadastro.quantidade }}"
+          style="width: 70px; text-align: center"
+        />
+      </td>
+      <td>
+        <span>{{ cadastro.total | currency }}</span>
+      </td>
+    </tr>
+  </table>
+
+  <div class="mt-3 mb-3" style="float: left">
+    <i
+      ><span style="margin-top: 10px"
+        ><span style="font-weight: bold">Cliente:</span> {{ cliente$ }}</span
+      ></i
+    >
+    <br />
+    <i
+      ><span style="margin-top: 10px"
+        ><span style="font-weight: bold">Contato:</span> {{ contato$ }}</span
+      ></i
+    >
+    <br />
+    <i
+      ><span style="margin-top: 10px">
+        <span style="font-weight: bold">End.Entrega:</span>
+        {{ enderecoEntrega }}</span
+      ></i
+    ><br />
+    <i
+      ><span style="margin-top: 10px">
+        <span style="font-weight: bold">Pagamento:</span>
+        {{ payment$ }}</span
+      ></i
+    >
+
+    <div>
+      <i>
+        <span
+          style="
+            margin-top: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            color: red;
+          "
+        >
+          {{ totalCaixa$ | currency }}</span
+        >
+      </i>
+    </div>
+  </div>
+  <div style="float: right; margin-top: 20px">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<ng-template #loading>
+  <span style="color: black; font-size: 20px"
+    ><i>
+      <hr style="margin-top: 30px" />
+      <b>Carregando lista......</b></i
+    >
+  </span>
+</ng-template>
+
+<!--Modal 02-->
+<div
+  style="background-color: black"
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog style-modal" role="document">
+    <div class="modal-content" style="margin: 0 auto; padding: 20px 30px">
+      <div class="modal-header">
+        <h5 style="color: red" class="modal-title mb-2" id="exampleModalLabel">
+          ENDEREÇO DE COBRANÇA
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngFor="let end of endUser">
+        <span class="style-end">RUA: </span
+        ><span class="style-end2">{{ end.rua }}</span
+        ><br />
+        <span class="style-end">NUMERO: </span
+        ><span class="style-end2">{{ end.numero }}</span
+        ><br />
+        <span class="style-end">BAIRRO: </span
+        ><span class="style-end2">{{ end.bairro }}</span
+        ><br />
+        <span class="style-end">CIDADE: </span
+        ><span class="style-end2">{{ end.cidade }}</span
+        ><br />
+        <span class="style-end">ESTADO: </span
+        ><span class="style-end2">{{ end.estado }}</span
+        ><br />
+        <span class="style-end">CEP: </span
+        ><span class="style-end2">{{ end.cep }}</span
+        ><br />
+      </div>
+      <div class="modal-footer mt-3">
+        <h5 class="mt-3">Cliente: {{ cliente$ }}</h5>
+      </div>
+    </div>
+  </div>
+</div>

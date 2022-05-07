@@ -1,0 +1,93 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+
+<section
+  id="profile"
+  class="container"
+  style="padding: 5px 30px 40px; min-height: 500px"
+>
+  <div class="row mt-3 mr-3">
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 text-center card">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12 profile-header">
+          <div class="style-left">
+            <i>
+              <h4 class="style-font">
+                Ola, <i>{{ userDetails?.fullName.split(" ")[0] }}</i
+                >!
+              </h4>
+            </i>
+          </div>
+
+          <div class="style-right">
+            <a
+              style="cursor: pointer"
+              class="nav-item style-font2 nav-link"
+              routerLinkActive="active"
+              (click)="pedidoRouter()"
+            >
+              Meus Pedidos
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 10px; width: 100%">
+          <button
+            class="btn btn-outline-danger btn-sm ml-2 mt-1"
+            (click)="senhaUpdate()"
+          >
+            Atualizar Senha
+          </button>
+
+          <button
+            class="btn btn-outline-warning btn-sm ml-2 mt-1"
+            (click)="endeUpdate()"
+          >
+            Atualizar Endereço
+          </button>
+        </div>
+      </div>
+
+      <div class="row user-details">
+        <div class="col-12">
+          <img
+            src="{{
+              this?.userDetails?.image?.url == null
+                ? '../../../../../../assets/check-user.png '
+                : this?.userDetails?.image?.url
+            }}"
+            alt="Perfil"
+            class="rounded-circle img-thumbnail"
+            alt="Perfil"
+          />
+          <h6>
+            <b><i>Nome:</i></b>
+            <i> {{ userDetails?.fullName }}</i>
+          </h6>
+          <p>
+            <b><i>Email: </i></b> <i>{{ userDetails?.email }}</i>
+          </p>
+          <hr style="background-color: #858b66" />
+          <h6>
+            <b>
+              <i style="font-weight: bolder">
+                Informamos que o carrinho de compra persistirá os produtos não
+                enviados apenas na mesma data de sua realização.
+              </i>
+              <hr style="background-color: #858b66" />
+              <i style="font-weight: bolder">
+                Envio de comprovante ou o próprio pagamento de compras realizada
+                no nosso sistema pode ser enviado no zap ou Pix: </i
+              ><br />
+              <i style="color: red; font-size: 18px"> (89) 98826-9454 </i>
+            </b>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

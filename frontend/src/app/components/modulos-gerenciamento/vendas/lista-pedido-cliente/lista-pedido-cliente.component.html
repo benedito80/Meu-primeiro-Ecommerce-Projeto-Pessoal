@@ -1,0 +1,134 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+
+<div
+  class="mt-4"
+  style="
+    min-height: 600px;
+    font-family: Poppins, Open Sans, verdana, courier, arial, helvetica;
+  "
+>
+  <div class="row mt-2" class="style-ped">
+    <div class="col">
+      <table
+        class="table table-hover"
+        *ngIf="listaVenda$ as cadastros; else loading"
+      >
+        <tr>
+          <th scope="col" style="width: 5%; padding-left: 10px">Nº</th>
+          <th scope="col" style="width: 85%">Meus Pedidos</th>
+          <th scope="col" class="style-center" style="width: 10%"></th>
+        </tr>
+
+        <h5 *ngIf="existDados()" class="mt-4 ml-3">
+          Sem registro de vendas...
+        </h5>
+
+        <tbody
+          *ngFor="
+            let cadastro of listaVenda$
+              | paginate: { itemsPerPage: count, currentPage: p };
+            index as i
+          "
+        >
+          <tr>
+            <td style="padding-left: 10px">{{ i + 1 }}</td>
+            <td class="style-dados" style="color: #ca4560">
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Data:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                  >{{ cadastro.data | date: "dd-MM-yyyy h:mm a" }}</span
+                ></span
+              >
+              <br />
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Cliente:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                  >{{ cadastro.username.fullName }}</span
+                ></span
+              >
+              <br />
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Contato:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                  >{{ cadastro.contato }}</span
+                ></span
+              >
+              <br />
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Pagamento:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                  >{{ cadastro.payment }}</span
+                ></span
+              >
+              <br />
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Qtd.Produto:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                >
+                  {{ cadastro.listaVenda.length }}</span
+                ></span
+              >
+              <br />
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Status:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                >
+                  {{ cadastro.status }}</span
+                ></span
+              >
+              <br />
+              <span
+                style="font-weight: bold; font-family: 'Poppins', sans-serif"
+                >Total:
+                <span
+                  style="font-weight: normal; font-style: italic; color: black"
+                  >{{ cadastro.caixa | currency }}</span
+                ></span
+              >
+            </td>
+
+            <td class="style-center">
+              <span>
+                <button
+                  class="btn btn-outline-info mb-1 btn-sm style-detalhe"
+                  (click)="listaVenda(cadastro._id)"
+                >
+                  Detalhes
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div style="float: right; margin: 0 25px 0 0">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<!--ESSE ng-template QUE TEM O NOME #loading VAI LA NA LINHA 12 (else loading) E SO MOSTRA DE TIVER DADOS-->
+<ng-template #loading>
+  <span class="loading"
+    ><i>
+      <hr style="margin-top: 30px" />
+      <b>Carregando lista......</b></i
+    >
+  </span>
+</ng-template>

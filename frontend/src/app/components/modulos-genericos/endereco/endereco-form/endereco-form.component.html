@@ -1,0 +1,302 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+<div class="style-header" style="min-height: 700px">
+  <div class="style-left">
+    <div class="card" style="width: 100%">
+      <div style="background-color: #ca4560; color: #fff">
+        <h6 class="card-header" style="padding: 8px 8px 8px 30px">
+          Cadastrar | Atualizar Endereço
+        </h6>
+      </div>
+
+      <div class="card-body" style="padding: 10px 20px">
+        <form
+          id="add-form"
+          (ngSubmit)="f.form.valid && saveEnd(f)"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <input
+                type="text"
+                [(ngModel)]="end.rua"
+                id="rua"
+                name="rua"
+                #rua="ngModel"
+                required
+                [ngClass]="{ 'is-invalid': f.submitted && rua.invalid }"
+                class="form-control"
+                style="margin-top: 0"
+                placeholder="RUA"
+              />
+              <div *ngIf="f.submitted && rua.invalid" class="invalid-feedback">
+                <div
+                  style="margin-top: -7px; margin-bottom: 10px"
+                  *ngIf="rua.errors.required"
+                >
+                  Campo Obrigatório!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <input
+                type="number"
+                class="form-control"
+                maxlength="6"
+                style="margin-top: 0"
+                [(ngModel)]="end.numero"
+                id="numero"
+                placeholder="Nº"
+                required
+                name="numero"
+                #numero="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && numero.invalid }"
+              />
+              <div
+                *ngIf="f.submitted && numero.invalid"
+                class="invalid-feedback"
+              >
+                <div
+                  style="margin-top: -7px; margin-bottom: 10px"
+                  *ngIf="numero.errors.required"
+                >
+                  Campo Obrigatório!
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-9">
+              <input
+                class="form-control"
+                style="margin-top: 0"
+                [(ngModel)]="end.bairro"
+                placeholder="BAIRRO"
+                id="bairro"
+                required
+                name="bairro"
+                [ngClass]="{ 'is-invalid': f.submitted && bairro.invalid }"
+                #bairro="ngModel"
+              />
+              <div
+                *ngIf="f.submitted && bairro.invalid"
+                class="invalid-feedback"
+              >
+                <div
+                  style="margin-top: -7px; margin-bottom: 10px"
+                  *ngIf="bairro.errors.required"
+                >
+                  Campo Obrigatório!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <input
+                class="form-control"
+                style="margin-top: 0"
+                [(ngModel)]="end.cidade"
+                id="cidade"
+                placeholder="CIDADE"
+                required
+                name="cidade"
+                #cidade="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && cidade.invalid }"
+              />
+              <div
+                *ngIf="f.submitted && cidade.invalid"
+                class="invalid-feedback"
+              >
+                <div
+                  style="margin-top: -7px; margin-bottom: 10px"
+                  *ngIf="cidade.errors.required"
+                >
+                  Campo Obrigatório!
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                maxlength="2"
+                style="margin-top: 0"
+                [(ngModel)]="end.estado"
+                placeholder="ESTADO"
+                id="estado"
+                required
+                name="estado"
+                #estado="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && estado.invalid }"
+              />
+              <div
+                *ngIf="f.submitted && estado.invalid"
+                class="invalid-feedback"
+              >
+                <div
+                  style="margin-top: -7px; margin-bottom: 10px"
+                  *ngIf="estado.errors.required"
+                >
+                  Campo Obrigatório!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <input
+                class="form-control"
+                style="margin-top: 0"
+                placeholder="CEP"
+                minlength="9"
+                [textMask]="{ mask: cepMask }"
+                [(ngModel)]="end.cep"
+                id="cep"
+                required
+                [ngClass]="{ 'is-invalid': f.submitted && cep.invalid }"
+                name="cep"
+                #cep="ngModel"
+              />
+              <div *ngIf="f.submitted && cep.invalid" class="invalid-feedback">
+                <div
+                  style="margin-top: -7px; margin-bottom: 10px"
+                  *ngIf="cep.errors.required"
+                >
+                  Campo Obrigatório!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="align-items: center; margin-top: 5px">
+            <button
+              type="submit"
+              style="margin: 2px; padding: 3px"
+              class="btn btn-primary btn-add-car"
+            >
+              SALVAR
+            </button>
+            <button
+              type="reset"
+              style="margin: 2px; padding: 3px"
+              class="btn btn-secondary btn-add-car"
+              (click)="cleanForm(f)"
+            >
+              LIMPAR
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="style-right">
+    <div class="divContainer">
+      <div class="conteudoNormal">
+        <div style="width: 100%">
+          <div
+            class="small-container cart-page"
+            style="min-height: 600px; margin-top: -1px"
+          >
+            <table class="table table-hover" *ngIf="ends; else loading">
+              <tr>
+                <th style="padding-left: 10px; width: 10%">Nº</th>
+                <th style="width: 80%">Dados Endereço(s)</th>
+                <th style="width: 10%"></th>
+              </tr>
+
+              <h5 *ngIf="existDados()" class="mt-4 ml-3">
+                Sem registro de endereço...
+              </h5>
+
+              <tr
+                *ngFor="
+                  let item of ends
+                    | paginate: { itemsPerPage: count, currentPage: p };
+                  index as i
+                "
+              >
+                <td style="padding-left: 10px">
+                  {{ i + 1 }}
+                </td>
+                <td style="vertical-align: middle">
+                  <small
+                    ><span style="font-weight: bold">Data Cadastro:</span>
+                    {{ item.data | date: "dd-MM-yyyy" }}</small
+                  >
+
+                  <br />
+
+                  <small style="margin-right: 10%"
+                    ><span style="font-weight: bold">Rua: </span
+                    >{{ item.rua }}</small
+                  >
+                  <br />
+                  <small
+                    ><span style="font-weight: bold">Numero: </span
+                    >{{ item.numero }}</small
+                  >
+                  <br />
+
+                  <small style="margin-right: 10%"
+                    ><span style="font-weight: bold">Bairro: </span
+                    >{{ item.bairro }}</small
+                  >
+                  <br />
+                  <small
+                    ><span style="font-weight: bold">Cidade: </span
+                    >{{ item.cidade }}</small
+                  >
+                  <br />
+
+                  <small
+                    ><span style="font-weight: bold">Estado: </span
+                    >{{ item.estado }}</small
+                  >
+                  <br />
+
+                  <small
+                    ><span style="font-weight: bold">CEP: </span
+                    >{{ item.cep }}</small
+                  >
+                </td>
+                <td class="style-botton">
+                  <a style="cursor: pointer" (click)="editEnd(item)">Editar</a>
+                  <a
+                    style="
+                      cursor: pointer;
+                      margin-left: 5px;
+                      margin-right: 10px;
+                    "
+                    (click)="deleteEnd(item)"
+                    >Deletar</a
+                  >
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<ng-template #loading>
+  <h5 style="margin: 10px 0 0 15px">Carregando endereço.....</h5>
+  <hr />
+</ng-template>

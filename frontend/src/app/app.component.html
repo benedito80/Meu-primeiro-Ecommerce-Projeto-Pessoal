@@ -1,0 +1,433 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+</head>
+<nav
+  class="depois navbar navbar-expand-lg navbar-dark"
+  style="background-image: url('../assets/menu.jpg'); padding: 10px"
+>
+  <a class="nav-link" [routerLink]="['/natura/produtos']">
+    <img
+      style="padding: 5px; margin-right: 20px"
+      src="../assets/ecommerce.png"
+      alt="Uploads"
+      width="150px"
+    />
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <img src="../assets/menu.png" alt="" width="30px" />
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item style-padding" routerLinkActive="active">
+        <a
+          style="color: black; font-size: 18px; font-weight: 300"
+          class="nav-link"
+          [routerLink]="['/auth/login']"
+          >{{ login_perfil }}</a
+        >
+      </li>
+    </ul>
+
+    <div *ngIf="mostrarAdmin">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown style-padding" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Administrador
+          </a>
+
+          <div class="dropdown-menu style-padding">
+            <a class="style-padding" [routerLink]="['/admin/novo']"
+              >Gerenciar Usuários</a
+            >
+            <a
+              class="dropdown-item style-padding"
+              [routerLink]="['/admin/vendas-descartadas']"
+              >Vendas Descartadas</a
+            >
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/admin/historicos']"
+              >Historico Vendas</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciar|Produtos
+          </a>
+          <div class="dropdown-menu style-padding">
+            <a class="style-padding" [routerLink]="['/produtos']"
+              >Produtos Ativos</a
+            >
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/produtos/desativado']"
+              >Produtos Inativos</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciar|Vendas
+          </a>
+          <div class="dropdown-menu style-padding">
+            <a class="style-padding" [routerLink]="['natura/caixa-entrada/']"
+              >Entregas Pendente</a
+            >
+            <a
+              class="dropdown-item style-padding"
+              [routerLink]="['/natura/saiu-entrega']"
+              >Saiu para Entrega</a
+            >
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/natura/historicos']"
+              >Histórico das Vendas</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciar|Caixas
+          </a>
+          <div class="dropdown-menu">
+            <a
+              class="dropdown-item style-padding"
+              [routerLink]="['/caixa/diario']"
+              >Caixa Diário</a
+            >
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/caixa/mensal']"
+              >Caixa Mensal</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item p2-padding style-icone" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: bold"
+            class="nav-link"
+            [routerLink]="['/natura/meu-carrinho']"
+          >
+            <img src="../assets/carrinho.png" alt="Carrinho" width="30px" />
+          </a>
+        </li>
+
+        <li
+          class="nav-item p2-padding botton-padding style-icone"
+          routerLinkActive="active"
+        >
+          <a
+            class="nav-link"
+            [routerLink]="['/natura/produtos']"
+            (click)="onLogout()"
+          >
+            <img src="../assets/sair.png" alt="sair" width="30px" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="mostrarGerente">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <div class="dropdown-menu">
+            <a class="style-padding" [routerLink]="['/usuarios/novo']"
+              >Gerenciar Usuários</a
+            >
+
+            <a
+              class="dropdown-item style-padding"
+              [routerLink]="['/admin/vendas-descartadas']"
+              >Vendas Descartadas</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciar|Produtos
+          </a>
+
+          <div class="dropdown-menu style-padding">
+            <a class="style-padding" [routerLink]="['/produtos']"
+              >Produtos Ativos</a
+            >
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/produtos/desativado']"
+              >Produtos Inativos</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciar|Vendas
+          </a>
+
+          <div class="dropdown-menu style-padding">
+            <a class="style-padding" [routerLink]="['natura/caixa-entrada/']"
+              >Entregas Pendente</a
+            >
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/natura/saiu-entrega']"
+              >Saiu para Entrega</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Gerenciar|Caixas
+          </a>
+          <div class="dropdown-menu">
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/caixa/diario']"
+              >Caixa Diário</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link dropdown-toggle style-padding"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Históricos
+          </a>
+          <div class="dropdown-menu">
+            <a
+              class="dropdown-item style-padding"
+              [routerLink]="['/natura/historicos']"
+              >Vendas</a
+            >
+
+            <a
+              class="dropdown-item style-padding botton-padding"
+              [routerLink]="['/caixa/mensal']"
+              >Caixas Mensais</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item style-icone p2-padding" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: bold"
+            class="nav-link"
+            [routerLink]="['/natura/meu-carrinho']"
+          >
+            <img src="../assets/carrinho.png" alt="Carrinho" width="30px" />
+          </a>
+        </li>
+
+        <li
+          class="nav-item p2-padding style-icone botton-padding"
+          routerLinkActive="active"
+        >
+          <a
+            class="nav-link"
+            [routerLink]="['/natura/produtos']"
+            (click)="onLogout()"
+          >
+            <img src="../assets/sair.png" alt="sair" width="30px" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="mostrarCliente">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item style-padding" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: 300"
+            class="nav-link"
+            [routerLink]="['/natura/meus-pedidos']"
+            >Meus Pedidos</a
+          >
+        </li>
+
+        <li class="nav-item style-icone" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: bold"
+            class="nav-link"
+            [routerLink]="['/natura/meu-carrinho']"
+          >
+            <img src="../assets/carrinho.png" alt="Carrinho" width="30px" />
+          </a>
+        </li>
+
+        <li
+          class="nav-item style-icone botton-padding"
+          routerLinkActive="active"
+        >
+          <a
+            class="nav-link"
+            [routerLink]="['/natura/produtos']"
+            (click)="onLogout()"
+          >
+            <img src="../assets/sair.png" alt="sair" width="30px" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="mostrarEmpacotador">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item style-padding" routerLinkActive="active">
+          <a
+            class="nav-link"
+            style="color: black; font-size: 18px; font-weight: 300"
+            [routerLink]="['/natura/caixa-entrada']"
+            >Vendas|Contabilizadas</a
+          >
+        </li>
+
+        <li class="nav-item style-icone" routerLinkActive="active">
+          <a
+            style="color: black; font-size: 18px; font-weight: bold"
+            class="nav-link"
+            [routerLink]="['/natura/meu-carrinho']"
+          >
+            <img src="../assets/carrinho.png" alt="Carrinho" width="30px" />
+          </a>
+        </li>
+
+        <li
+          class="nav-item style-icone botton-padding"
+          routerLinkActive="active"
+        >
+          <a
+            class="nav-link"
+            [routerLink]="['/natura/produtos']"
+            (click)="onLogout()"
+          >
+            <img src="../assets/sair.png" alt="sair" width="30px" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="footer">
+  <div>
+    >
+    <div class="footer-col">
+      <h1>ECOMMERCE</h1>
+      <ul class="footer-col-links">
+        <li><a>Suas compras agora online</a></li>
+        <li><a>Desenvolvedor: Benedito Costa</a></li>
+        <li>
+          <a><i class="fa fa-phone style-fa"></i>(89) 98826-9454</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h1>REDES SOCIAIS</h1>
+      <ul>
+        <li>
+          <a><i class="fab fa-twitter style-fa"></i>Twitter</a>
+        </li>
+
+        <li>
+          <a><i class="fab fa-facebook-f style-fa"></i>Facebook</a>
+        </li>
+        <li>
+          <a><i class="fab fa-instagram style-fa"></i>Instagram</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,737 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+
+:root {
+  --black: #2c2c54;
+  --orange: #ff9f1a;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  font-size: 1.7rem;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 6rem;
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 2rem 9%;
+}
+
+.heading {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 4rem;
+  color: var(--black);
+  padding: 1rem;
+}
+
+.font-categoria {
+  font-size: 4rem;
+}
+
+.heading span {
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.mt-p {
+  margin-top: 8%;
+}
+
+.products .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.products .box-container .box {
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #f9f9f9;
+  flex: 1 1 26rem;
+}
+
+.products .box-container .box .content {
+  padding: 1.5rem;
+}
+
+.products .box-container .box img {
+  height: 18rem;
+  width: 20rem;
+  /* transform: rotate(-35deg);*/
+  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.1));
+  margin: 2.6rem 1rem;
+}
+
+/*.products .box-container .box:hover img {
+  transform: rotate(-5deg) scale(1.2);
+}*/
+
+.products .box-container .box .icons {
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  top: 0.5rem;
+  left: -10rem;
+}
+
+.products .box-container .box:hover .icons {
+  left: 1rem;
+}
+
+.products .box-container .box .icons a {
+  height: 4.5rem;
+  width: 5rem;
+  line-height: 4.5rem;
+  font-size: 2rem;
+  color: var(--black);
+  border: 0.1rem solid var(--black);
+  border-radius: 0.5rem;
+  background: #fff;
+  margin-top: 0.5rem;
+}
+
+.products .box-container .box .icons a:hover {
+  background: var(--orange);
+  color: #fff;
+}
+
+.products .box-container .box .content h3 {
+  color: var(--black);
+  font-size: 2rem;
+}
+
+.products .box-container .box .content .price {
+  /* color:var(--black);*/
+  color: red;
+  font-size: 2rem;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.products .box-container .box .content .price span {
+  color: var(--orange);
+  font-size: 1.5rem;
+  text-decoration: line-through;
+}
+
+.products .box-container .box .content .stars {
+  padding-bottom: 1rem;
+}
+
+.products .box-container .box .content .stars i {
+  font-size: 1.7rem;
+  color: var(--orange);
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2%;
+}
+
+.container-interno {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.produto-single {
+  width: 32%;
+  margin: 1% auto;
+  display: inline-block;
+  font-family: "Arial Narrow Bold", sans-serif;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.produto-single img {
+  max-width: 100%;
+}
+
+.produto-single p {
+  text-align: center;
+  display: block;
+  height: 70px;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.style-video {
+  text-align: center;
+  font-size: 3rem;
+  color: #5fb382;
+  font-weight: bold;
+  padding-top: 30px;
+  margin-bottom: 2rem;
+}
+
+.produto-volume {
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 10px 10px 0;
+  padding: 10px 10px 0;
+  display: block;
+  min-height: 20px;
+}
+
+.produto-single a {
+  text-decoration: none;
+  color: white;
+  background-color: #5fb382;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  padding: 4px 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 30px;
+  margin-bottom: -10px;
+  text-align: left;
+  color: #5fb382;
+  text-transform: uppercase;
+}
+
+.input-radio {
+  width: 22px;
+  height: 24px;
+}
+
+.product-button {
+  position: absolute;
+  background-color: red;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 5px;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.style-menu {
+  max-width: 100%;
+  display: flex;
+  position: sticky;
+  padding: 5px;
+  justify-content: flex-end;
+  align-self: center;
+  margin: -5px auto 0;
+  top: 0;
+  z-index: 1000;
+  background: #ff9f1a;
+}
+
+.menu-left {
+  width: 23%;
+  padding-right: 3px;
+}
+
+.menu-right {
+  width: 21%;
+  padding-left: 3px;
+}
+
+/*.style-left {
+  width: 25%;
+  min-height: 400vw;
+  float: left;
+  padding: 25px 0px;
+  border-right: 1px solid #c6cacc;
+  background-image: url('../../../../assets/rodape.jpg');
+}*/
+
+.style-right {
+  width: 100%;
+  min-height: 480px;
+  float: left;
+  padding: 5px 0px;
+  margin-bottom: -5px;
+  /*background-color: #f00;*/
+}
+
+.style-h4 {
+  background-color: #5c10aa;
+  padding: 15px 0 15px 50px;
+  border-radius: 20px;
+  color: white;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.container-inscrever {
+  width: 100%;
+  border-radius: 30px;
+  height: 180px;
+  background: #ff6914;
+  padding: 8px 10px;
+  color: white;
+  text-align: center;
+}
+
+.style-inscrever {
+  font-size: 20px;
+  margin: 10px 10px 5px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #5c10aa;
+  border: none;
+}
+
+.style-inscrever-h3 {
+  color: white;
+  margin-top: 15px;
+  padding: 10px 20px;
+}
+
+.style-ops {
+  color: red;
+  margin: 30px 25px;
+}
+
+.style-input {
+  margin-left: 0px;
+}
+
+.style-label {
+  margin-top: 0px;
+  margin-left: 40px;
+}
+
+.style-carregando {
+  padding: 50px;
+  font-size: 2rem;
+}
+
+.bem-vindo {
+  text-align: center;
+  color: #ffff;
+  padding: 8px;
+}
+
+.newsletter {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.newsletter .content {
+  text-align: center;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  background: #931df3;
+  padding: 2rem;
+}
+
+.newsletter .content h3 {
+  font-size: 2.5rem;
+  color: #ff9f1a;
+}
+
+.newsletter .content p {
+  font-size: 1.5rem;
+  color: white;
+  margin: 1rem auto;
+  max-width: 60rem;
+}
+
+.newsletter .content form {
+  margin: 1rem auto;
+  max-width: 50rem;
+  display: flex;
+}
+
+.newsletter .content form .box {
+  width: 100%;
+  font-size: 1.7rem;
+  text-transform: none;
+  color: #333;
+  padding: 1rem;
+  border: 0.2rem solid var(--black);
+  border-right: none;
+  margin-top: 1rem;
+}
+
+.newsletter .content form .btn {
+  border-radius: 0;
+  margin-top: 1rem;
+}
+
+.style-new {
+  font-size: 2rem;
+  padding: 1rem 9%;
+  display: block;
+  text-transform: none;
+  color: #fff;
+}
+
+/*home*/
+.home {
+  padding: 0;
+  position: relative;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 0.5rem;
+  border: 0.2rem solid var(--black);
+  font-weight: bolder;
+  font-size: 1.7rem;
+  color: #fff;
+  cursor: pointer;
+  background: #5fb382;
+  padding: 0.7rem 3rem;
+}
+
+.btn:hover {
+  background: var(--orange);
+  color: #fff;
+}
+
+.home .slide-container .slide {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0 9%;
+  padding-top: 3rem;
+}
+
+.home .slide-container .slide .content {
+  flex: 1 1 40rem;
+  animation: slideContent 0.5s linear 1s backwards;
+}
+
+@keyframes slideContent {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+}
+
+.home .slide-container .slide .image {
+  flex: 1 1 50rem;
+  padding-bottom: 10rem;
+  position: relative;
+  z-index: 0;
+}
+
+.home .slide-container .slide .image .shoe {
+  width: 100%;
+  /*transform: rotate(-35deg);*/
+  animation: shoe 0.3s linear;
+}
+
+.home .slide-container .slide .image .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  animation: shoeText 0.5s linear 0.5s backwards;
+}
+
+@keyframes shoeText {
+  0% {
+    opacity: 0;
+    top: -10rem;
+  }
+}
+
+.home .slide-container .slide .content span a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--orange);
+}
+
+.home .slide-container .slide .content h3 {
+  font-size: 5rem;
+  color: var(--black);
+}
+
+.home .slide-container .slide .content p {
+  font-size: 1.7rem;
+  text-transform: none;
+  color: #666;
+  padding: 0.5rem 0;
+}
+
+.home .slide-container:nth-child(1) .slide {
+  background: url(../../../../../assets/home-bg-1.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .slide-container {
+  display: none;
+}
+
+.home .slide-container.active {
+  display: block;
+}
+
+/* media queries  */
+@media (max-width: 400px) {
+  html {
+    font-size: 50%;
+  }
+
+  .home .slide-container .slide .image {
+    padding-bottom: 6rem;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .products .box-container .box img {
+    height: 25rem;
+    width: 28rem;
+    /* transform: rotate(-35deg);*/
+    filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.1));
+    margin: 2.6rem 1rem;
+  }
+
+  .style-left {
+    display: none;
+  }
+
+  /*.style-right {
+    width: 100%;
+  }*/
+
+  .style-video {
+    padding-top: 30px;
+    font-size: 20px;
+  }
+
+  .style-input {
+    margin-left: -40px;
+  }
+
+  .style-label {
+    margin-top: 3px;
+    margin-left: 25px;
+  }
+
+  .produto-single img {
+    width: 100%;
+  }
+
+  .produto-single {
+    width: 48%;
+  }
+
+  .container-inscrever {
+    padding: 2px 20px;
+    height: 140px;
+  }
+
+  .style-inscrever {
+    font-size: 12px;
+    margin: 5px 20px;
+  }
+
+  .style-inscrever-h3 {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .style-left {
+    font-size: 12px;
+    border-right: none;
+    padding: 20px 0px 20px 0px;
+  }
+
+  .style-h4 {
+    font-size: 16px;
+    padding: 15px 0 15px 25px;
+  }
+
+  .style-ops {
+    font-size: 14px;
+    margin: 30px 0px 20px 50px;
+  }
+
+  .bem-vindo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home .slide-container .slide .image .text {
+    width: 60%;
+  }
+
+  .produto-single {
+    width: 49%;
+  }
+
+  .menu-left {
+    width: 50%;
+    padding-right: 3px;
+  }
+
+  .menu-right {
+    width: 50%;
+    padding-left: 3px;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
+
+  .font-categoria {
+    font-size: 3rem;
+  }
+
+  .style-new {
+    font-size: 1.7rem;
+    padding: 10px;
+  }
+
+  .style-left {
+    font-size: 14px;
+    border-right: none;
+  }
+
+  .display-small {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .style-inscrever-h3 {
+    font-size: 25px;
+  }
+
+  .style-inscrever {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+
+  header {
+    padding: 2rem;
+  }
+
+  section {
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .produto-single {
+    width: 24%;
+  }
+
+  li a {
+    font-size: 1.2rem;
+    padding: 8px 25px;
+  }
+
+  .style-left {
+    width: 20%;
+  }
+
+  /*.style-right {
+    width: 80%;
+  }*/
+}
+
+/*equipe e suporte*/
+.review .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.review .box-container .box {
+  flex: 1 1 30rem;
+  text-align: center;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  background: #f9f9f9;
+  padding: 2rem;
+}
+
+.review .box-container .box img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 15rem;
+  width: 15rem;
+  margin: 1rem 0;
+}
+
+.review .box-container .box h3 {
+  font-size: 2.5rem;
+  color: var(--black);
+}
+
+.review .box-container .box p {
+  font-size: 1.6rem;
+  color: #666;
+  padding: 1rem 0;
+}
+
+.review .box-container .box .stars i {
+  color: var(--orange);
+  font-size: 2rem;
+}
+
+/* fast delivery*/
+.service .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: #931df3;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.service .box-container .box {
+  text-align: center;
+  flex: 1 1 30rem;
+}
+
+.service .box-container .box i {
+  font-size: 4rem;
+  color: var(--orange);
+}
+
+.service .box-container .box h3 {
+  font-size: 2rem;
+  color: white;
+  padding-top: 1rem;
+}
+
+.service .box-container .box p {
+  font-size: 1.5rem;
+  color: white;
+  padding: 1rem 0;
+}

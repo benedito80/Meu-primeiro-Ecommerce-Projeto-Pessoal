@@ -1,0 +1,218 @@
+<div style="background-image: url('../assets/categoria.jpg')">
+  <h5 class="bem-vindo">
+    Seja bem-vindo ao ShoppingOeiras.com. Agora suas compras ficaram mais fáceis
+    na nossa cidade!
+  </h5>
+</div>
+<div class="style-header" style="min-height: 700px">
+  <div class="style-left">
+    <div class="card" style="width: 100%">
+      <div style="background-color: #ca4560; color: #fff">
+        <h6 class="card-header" style="padding: 8px 8px 8px 30px">
+          Confirmar Encerramneto do Caixa Atual
+        </h6>
+      </div>
+
+      <div class="card-body" style="padding: 30px">
+        <form
+          id="add-form"
+          (ngSubmit)="f.form.valid && saveCaixa(f)"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="col-md-12">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="cx.status"
+                #status="ngModel"
+                required
+                name="status"
+                [ngClass]="{ 'is-invalid': f.submitted && status.invalid }"
+              />
+              <div
+                *ngIf="f.submitted && status.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="status.errors.required" style="margin-top: -10px">
+                  Aponte e descreva o caixa a encerrar!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="cx.adicional"
+                #adicional="ngModel"
+                (change)="add(cx.adicional)"
+                (focus)="fLimpa()"
+                placeholder="Adicionar no caixa"
+                required
+                name="adicional"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="cx.desconto"
+                #desconto="ngModel"
+                (focus)="fLimpa()"
+                (change)="diminui(cx.desconto)"
+                placeholder="Extrair do caixa"
+                required
+                name="desconto"
+              />
+            </div>
+          </div>
+
+          <div style="align-items: center; margin-top: 5px">
+            <button
+              type="submit"
+              style="margin: 2px; padding: 3px"
+              class="btn btn-primary btn-add-car"
+            >
+              FINALIZAR CAIXA
+            </button>
+            <button
+              type="reset"
+              style="margin: 2px; padding: 3px"
+              class="btn btn-secondary btn-add-car"
+              (click)="cleanForm(f)"
+            >
+              LIMPAR
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="style-right">
+    <div class="divContainer">
+      <div class="conteudoNormal">
+        <div style="width: 100%">
+          <div
+            class="small-container cart-page"
+            style="min-height: 600px; margin-top: -1px"
+          >
+            <table class="table table-hover" *ngIf="cxs; else loading">
+              <tr>
+                <th scope="col" style="width: 5%; padding-left: 20px">Nº</th>
+                <th
+                  scope="col"
+                  style="padding-right: 20px; text-align: justify"
+                >
+                  DADOS DO CAIXA
+                </th>
+              </tr>
+              <h5 *ngIf="existDados()" class="mt-4 ml-3">
+                Sem registro de caixa...
+              </h5>
+
+              <tr
+                *ngFor="
+                  let cx of cxs
+                    | paginate: { itemsPerPage: count, currentPage: p };
+                  index as i
+                "
+              >
+                <td
+                  style="
+                    text-align: justify;
+                    vertical-align: middle;
+                    padding-left: 20px;
+                  "
+                >
+                  {{ i + 1 }}
+                </td>
+                <td style="text-align: justify; vertical-align: middle">
+                  <span style="font-weight: bold"
+                    >Data:
+                    <span style="font-weight: normal; color: #ca4560">{{
+                      cx.data | date: "dd-MM-yyyy | h:mm a"
+                    }}</span></span
+                  ><br />
+                  <span style="font-weight: bold"
+                    >Produtos:
+                    <span style="font-weight: normal; color: #ca4560">{{
+                      cx.quantidade
+                    }}</span></span
+                  ><br />
+                  <span style="font-weight: bold"
+                    >Tarifa:
+                    <span style="font-weight: normal; color: #ca4560">{{
+                      cx.tarifa | currency
+                    }}</span></span
+                  ><br />
+
+                  <span style="font-weight: bold"
+                    >Total:
+                    <span style="font-weight: normal; color: #ca4560">{{
+                      cx.caixa | currency
+                    }}</span></span
+                  ><br />
+
+                  <div>
+                    <button
+                      style="
+                        margin-top: 15px;
+                        cursor: pointer;
+                        font-size: 1.7rem;
+                        background-color: brown;
+                        color: white;
+                        border-radius: 15px;
+                        border: none;
+                        padding: 3px 8px;
+                      "
+                      (click)="editCaixa(cx)"
+                    >
+                      Fechar Venda
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <div style="float: right" class="mt-5 mr-2">
+              <div class="total-price2">
+                <table>
+                  <tr>
+                    <td>Tarifa:</td>
+                    <td>{{ tarifaTotal() | currency }}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="total-price">
+                <table>
+                  <tr style="color: #ca4560; font-weight: bold">
+                    <td>Total:</td>
+                    <td>{{ total | currency }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<ng-template #loading>
+  <h5 style="margin: 10px 0 0 15px">Carregando lista de produtos.....</h5>
+  <hr />
+</ng-template>
